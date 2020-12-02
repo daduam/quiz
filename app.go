@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"encoding/csv"
+	"flag"
 	"fmt"
 	"io"
 	"log"
@@ -18,7 +19,12 @@ var (
 func main() {
 	fmt.Println("Quiz game")
 
-	f, err := os.Open("problems.csv")
+	// flags
+	csvPtr := flag.String("csv", "./problems.csv", "path to csv file")
+
+	flag.Parse()
+
+	f, err := os.Open(*csvPtr)
 	if err != nil {
 		panic(err)
 	}
